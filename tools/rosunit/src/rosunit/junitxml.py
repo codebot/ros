@@ -56,7 +56,9 @@ from xml.dom import Node as DomNode
 from functools import reduce
 import rospkg
 
-invalid_chars = re.compile(ur'[^\x09\x0A\x0D\x20-\x7E\x85\xA0-\xFF\u0100-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]')
+from six import u
+
+invalid_chars = re.compile(u'[^\x09\x0A\x0D\x20-\x7E\x85\xA0-\xFF\u0100-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]')
 def invalid_char_replacer(m):
     return "&#x"+('%04X' % ord(m.group(0)))+";"
 def filter_nonprintable_text(text):

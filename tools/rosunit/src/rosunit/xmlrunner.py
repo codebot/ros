@@ -21,6 +21,7 @@ except ImportError:
     from io import StringIO
 from xml.sax.saxutils import escape
 import xml.etree.ElementTree as ET
+from six import u
 
 def cdata(cdata_text):
     return '<![CDATA[\n{}\n]]>'.format(cdata_text)
@@ -159,7 +160,7 @@ class _XMLTestResult(unittest.TestResult):
         self._failure = err
 
     def filter_nonprintable_text(self, text):
-        invalid_chars = re.compile(ur'[^\x09\x0A\x0D\x20-\x7E\x85\xA0-\xFF\u0100-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]')
+        invalid_chars = re.compile(u'[^\x09\x0A\x0D\x20-\x7E\x85\xA0-\xFF\u0100-\uD7FF\uE000-\uFDCF\uFDE0-\uFFFD]')
         def invalid_char_replacer(m):
             return "&#x"+('%04X' % ord(m.group(0)))+";"
         return re.sub(invalid_chars, invalid_char_replacer, str(text))
