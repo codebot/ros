@@ -5,7 +5,7 @@ catkin_package()
 
 install(FILES rosbash rosfish rostcsh roszsh
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-install(PROGRAMS scripts/rosrun
+install(PROGRAMS scripts/rosrun scripts/srosrun
   DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION})
 
 # making toplevel forward script for bash script rosrun

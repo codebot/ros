@@ -1,0 +1,5 @@
+#!/bin/bash
+# this mysterious next line will set ROS_SECURITY to ssl if it isn't set already
+: ${ROS_SECURITY:=ssl}
+export ROS_SECURITY=$ROS_SECURITY
+rosrun "$@"
